@@ -2,6 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 
+// Child components - 9 `Square` child components get created
+// sets state to null until modified via onClick event listener
+// sends new states up to parent `Board` component via `props` 
+// FYI: `super(props)` __must__ be called within a subclass constructor to ensure that `this` is defined; see https://overreacted.io/why-do-we-write-super-props/ for more info
 class Square extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +25,16 @@ class Square extends React.Component {
   }
 }
 
+// Parent `Board` component; passes `value` prop to `Square` children components to update states
+// keeps chidren components in sync 
 class Board extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      squares: Array(9).fill(null),
+    };
+  }
+
   renderSquare(i) {
     return <Square value={i} />;
   }
