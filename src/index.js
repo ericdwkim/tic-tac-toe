@@ -5,21 +5,14 @@ import './index.css';
 // Child components - 9 `Square` child components get created
 // sets state to null until modified via onClick event listener
 // sends new states up to parent `Board` component via `props` 
-// FYI: `super(props)` __must__ be called within a subclass constructor to ensure that `this` is defined; see https://overreacted.io/why-do-we-write-super-props/ for more info
 class Square extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: null,
-    }
-  }
   render() {
     return (
       <button 
           className="square" 
-          onClick={ () => this.setState({value: 'X'})}
+          onClick={ () => this.props.onClick()} //˜TODO: left off at "delete constructor & calling onClick that is passed via props from parent Board component"
           >
-        {this.state.value}
+        {this.props.value}
       </button>
     );
   }
