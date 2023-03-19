@@ -31,13 +31,19 @@ class Board extends React.Component {
   constructor() {
     super();
     this.state = {
-      squares: Array(9).fill(null),
+      squares: Array(9).fill(null), // `squares` array of 9 cells with default value to `null`
     };
   }
 
   renderSquare(i) {
-    return <Square value={i} />;
-  }
+    return <Square value={this.state.squares[i]} // passing prop `value` back to Square
+    // FYI: `this` is allowed to be used in this parent component
+    // as constructor in Square subclass contained `super(props)` with a default state to null
+    onClick = { () => this.handleClick(i)}
+    // passing prop `onClick` back to Square component
+    // `onClick` is a fn that Square can call
+    />
+  };
 
   render() {
     const status = 'Next player: X';
